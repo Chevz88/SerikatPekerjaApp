@@ -1,9 +1,5 @@
-// File: build.gradle (Project root)
+// File: build.gradle (root project)
 buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.2.2'
     }
