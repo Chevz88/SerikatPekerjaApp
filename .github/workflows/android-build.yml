@@ -1,4 +1,4 @@
-name: Android Build (Studio Compatible)
+name: Android CI - Studio Modern
 
 on:
   push:
@@ -8,11 +8,10 @@ on:
 
 jobs:
   build:
-    name: Build APK
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
+    - name: Checkout project
       uses: actions/checkout@v4
 
     - name: Set up JDK 17
@@ -21,16 +20,16 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Fix line endings for gradlew (Windows to Unix)
+    - name: Fix gradlew line endings
       run: |
         sed -i 's/\r$//' gradlew
         chmod +x gradlew
 
-    - name: Build Debug APK
+    - name: Clean build & assembleDebug
       run: ./gradlew clean assembleDebug
 
-    - name: Upload Debug APK
+    - name: Upload APK (Debug)
       uses: actions/upload-artifact@v4
       with:
-        name: serikatpekerja-debug-apk
+        name: SerikatPekerjaApp-debug
         path: app/build/outputs/apk/debug/app-debug.apk
