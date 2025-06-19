@@ -5,8 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // Hapus baris Kotlin kalau tidak dipakai
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:8.2.2'
     }
 }
 
