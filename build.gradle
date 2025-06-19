@@ -1,11 +1,12 @@
+// File: build.gradle (Project root)
 buildscript {
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.2'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22'
+        // Hapus baris Kotlin kalau tidak dipakai
+        classpath 'com.android.tools.build:gradle:4.1.0'
     }
 }
 
