@@ -1,5 +1,6 @@
 <string-array name="departemen_array">
     <item>Produksi</item>
+    <item>Sales</item>
     <item>QC</item>
     <item>Logistik</item>
     <item>Keuangan</item>
