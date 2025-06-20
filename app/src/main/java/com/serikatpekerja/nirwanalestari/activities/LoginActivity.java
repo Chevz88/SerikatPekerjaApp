@@ -9,8 +9,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.serikatpekerja.nirwanalestari.R;
-import com.serikatpekerja.nirwanalestari.MainActivity;
 import com.serikatpekerja.nirwanalestari.database.DatabaseHelper;
+import com.serikatpekerja.nirwanalestari.DashboardActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Inisialisasi view
         edtNIK = findViewById(R.id.edtNIK);
         edtPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
@@ -34,9 +35,19 @@ public class LoginActivity extends AppCompatActivity {
             String nik = edtNIK.getText().toString().trim();
             String password = edtPassword.getText().toString().trim();
 
+            if (nik.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "NIK dan password harus diisi!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             if (dbHelper.checkUser(nik, password)) {
+                // Ambil nama user dari database
+                String namaUser = dbHelper.getUserName(nik); // Pastikan kamu punya fungsi getUserName(nik)
+
                 Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                intent.putExtra("user_name", namaUser);
+                startActivity(intent);
                 finish();
             } else {
                 Toast.makeText(this, "Login gagal. Periksa NIK dan password!", Toast.LENGTH_SHORT).show();
