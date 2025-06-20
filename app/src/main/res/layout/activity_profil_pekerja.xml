@@ -1,0 +1,15 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView android:text="Profil Pekerja" android:textSize="22sp"
+        android:textStyle="bold" android:layout_marginBottom="16dp" />
+
+    <TextView android:id="@+id/txtNama" android:text="Nama: " />
+    <TextView android:id="@+id/txtNIK" android:text="NIK: " />
+    <TextView android:id="@+id/txtKTP" android:text="KTP: " />
+    <TextView android:id="@+id/txtDepartemen" android:text="Departemen: " />
+
+</LinearLayout>
