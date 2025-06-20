@@ -21,7 +21,6 @@ public class ChatbotActivity extends AppCompatActivity {
     RecyclerView recyclerChat;
     EditText edtMessage;
     Button btnSend;
-
     ChatAdapter chatAdapter;
     List<ChatMessage> messageList;
 
@@ -36,37 +35,24 @@ public class ChatbotActivity extends AppCompatActivity {
 
         messageList = new ArrayList<>();
         chatAdapter = new ChatAdapter(messageList);
-
         recyclerChat.setLayoutManager(new LinearLayoutManager(this));
         recyclerChat.setAdapter(chatAdapter);
 
-        btnSend.setOnClickListener(v -> sendMessage());
-    }
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String msg = edtMessage.getText().toString().trim();
+                if (!msg.isEmpty()) {
+                    messageList.add(new ChatMessage(msg, true)); // user message
+                    chatAdapter.notifyItemInserted(messageList.size() - 1);
+                    edtMessage.setText("");
 
-    private void sendMessage() {
-        String msg = edtMessage.getText().toString().trim();
-        if (msg.isEmpty()) return;
-
-        messageList.add(new ChatMessage(msg, true)); // user message
-        chatAdapter.notifyItemInserted(messageList.size() - 1);
-        recyclerChat.scrollToPosition(messageList.size() - 1);
-        edtMessage.setText("");
-
-        // Simulasi balasan bot
-        String reply = getBotReply(msg);
-        messageList.add(new ChatMessage(reply, false)); // bot message
-        chatAdapter.notifyItemInserted(messageList.size() - 1);
-        recyclerChat.scrollToPosition(messageList.size() - 1);
-    }
-
-    private String getBotReply(String msg) {
-        // Placeholder: bisa nanti diganti RAG / OpenAI
-        if (msg.toLowerCase().contains("upah")) {
-            return "Upah minimum ditentukan sesuai UMR daerah berdasarkan ketentuan Kemnaker.";
-        } else if (msg.toLowerCase().contains("hak")) {
-            return "Setiap pekerja memiliki hak atas jaminan sosial, perlindungan, dan berserikat.";
-        } else {
-            return "Terima kasih atas pertanyaannya. Silakan tunggu jawaban lebih lanjut dari serikat.";
-        }
+                    // Simulasi jawaban bot
+                    String reply = "Terima kasih. Pertanyaan Anda akan segera diproses.";
+                    messageList.add(new ChatMessage(reply, false));
+                    chatAdapter.notifyItemInserted(messageList.size() - 1);
+                }
+            }
+        });
     }
 }
