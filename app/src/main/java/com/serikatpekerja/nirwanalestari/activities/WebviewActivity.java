@@ -19,8 +19,6 @@ public class WebViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_webview);
 
         webView = findViewById(R.id.webView);
-
-        // Ambil URL dari intent
         String url = getIntent().getStringExtra("url");
 
         WebSettings settings = webView.getSettings();
