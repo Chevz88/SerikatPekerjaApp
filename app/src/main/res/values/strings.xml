@@ -1,4 +1,10 @@
-<resources>
-    <string name="app_name">SerikatPekerjaApp</string>
-    <string name="splash_message">Bersama Kita Kuat. Bersatu Kita Bangkit.</string>
-</resources>
+<string-array name="departemen_array">
+    <item>Produksi</item>
+    <item>Sales</item>
+    <item>QC</item>
+    <item>Logistik</item>
+    <item>Keuangan</item>
+    <item>HRD</item>
+    <item>IT</item>
+    <item>Lainnya</item>
+</string-array>
