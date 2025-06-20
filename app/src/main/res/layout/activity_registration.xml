@@ -2,21 +2,19 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Formulir Pendaftaran Anggota"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
+            android:text="Formulir Pendaftaran"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:layout_marginBottom="24dp" />
 
@@ -24,39 +22,27 @@
             android:id="@+id/edtNama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nama Lengkap"
-            android:backgroundTint="@android:color/white"
-            android:textColor="@android:color/white"
-            android:textColorHint="#DDDDDD"
-            android:layout_marginBottom="12dp" />
+            android:hint="Nama Lengkap" />
 
         <EditText
             android:id="@+id/edtKTP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nomor KTP"
-            android:inputType="number"
-            android:backgroundTint="@android:color/white"
-            android:textColor="@android:color/white"
-            android:textColorHint="#DDDDDD"
-            android:layout_marginBottom="12dp" />
+            android:layout_marginTop="12dp" />
 
         <EditText
             android:id="@+id/edtNIK"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="NIK Karyawan"
-            android:inputType="number"
-            android:backgroundTint="@android:color/white"
-            android:textColor="@android:color/white"
-            android:textColorHint="#DDDDDD"
-            android:layout_marginBottom="12dp" />
+            android:layout_marginTop="12dp" />
 
         <Spinner
-            android:id="@+id/spinnerDepartemen"
+            android:id="@+id/edtDepartemen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp" />
+            android:layout_marginTop="12dp" />
 
         <EditText
             android:id="@+id/edtPassword"
@@ -64,19 +50,35 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword"
-            android:backgroundTint="@android:color/white"
-            android:textColor="@android:color/white"
-            android:textColorHint="#DDDDDD"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginTop="12dp" />
+
+        <!-- Upload Foto KTP -->
+        <ImageView
+            android:id="@+id/imgKTPPreview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            android:background="@android:color/darker_gray" />
+
+        <Button
+            android:id="@+id/btnUploadKTP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upload Foto KTP"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/abu"
+            android:textColor="@android:color/black" />
 
         <Button
             android:id="@+id/btnDaftar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Daftar"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/merah"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="8dp" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/btnBack"
@@ -84,7 +86,8 @@
             android:layout_height="wrap_content"
             android:text="Kembali"
             android:backgroundTint="@color/abu"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:layout_marginTop="12dp" />
 
     </LinearLayout>
 </ScrollView>
