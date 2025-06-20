@@ -52,7 +52,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return exists;
     }
 
-    // Insert aduan
+    // Ambil nama user berdasarkan NIK
+    public String getUserName(String nik) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String name = "";
+
+        Cursor cursor = db.rawQuery("SELECT nama FROM users WHERE nik = ?", new String[]{nik});
+        if (cursor.moveToFirst()) {
+            name = cursor.getString(0);
+        }
+
+        cursor.close();
+        return name;
+    }
+
+    // Insert laporan pengaduan
     public long insertLaporan(Laporan laporan) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
