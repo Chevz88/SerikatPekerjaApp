@@ -32,20 +32,37 @@
             android:layout_marginTop="12dp" />
 
         <Spinner
-            android:id="@+id/edtDepartemen"
+            android:id="@+id/spinnerDepartemen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Departemen"
             android:layout_marginTop="12dp" />
 
         <EditText
-            android:id="@+id/edtIsiAduan"
+            android:id="@+id/edtIsi"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:gravity="top"
             android:hint="Isi Aduan"
             android:inputType="textMultiLine"
             android:layout_marginTop="12dp" />
+
+        <!-- Tombol Pilih File -->
+        <Button
+            android:id="@+id/btnPilihFile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilih File Lampiran"
+            android:layout_marginTop="16dp" />
+
+        <!-- Preview nama file -->
+        <TextView
+            android:id="@+id/txtFileTerpilih"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Belum ada file dipilih"
+            android:textColor="#444444"
+            android:textStyle="italic"
+            android:layout_marginTop="8dp" />
 
         <Button
             android:id="@+id/btnKirim"
@@ -57,13 +74,12 @@
             android:textColor="@android:color/white" />
 
         <Button
-            android:id="@+id/btnKembali"
+            android:id="@+id/btnBack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kembali"
             android:backgroundTint="@color/abu"
             android:textColor="@android:color/black"
             android:layout_marginTop="12dp" />
-
     </LinearLayout>
 </ScrollView>
