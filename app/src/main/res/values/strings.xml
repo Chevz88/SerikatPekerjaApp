@@ -1,12 +1,6 @@
 <resources>
-    <string-array name="departemen_array">
-        <item>Produksi</item>
-        <item>Sales</item>
-        <item>QC</item>
-        <item>Logistik</item>
-        <item>Keuangan</item>
-        <item>HRD</item>
-        <item>IT</item>
-        <item>Lainnya</item>
-    </string-array>
+    <string name="app_name">SerikatPekerjaApp</string>
+    <string name="login">Login</string>
+    <string name="register">Registrasi</string>
+    <!-- Tidak ada <string-array name="departemen_array"> di sini -->
 </resources>
