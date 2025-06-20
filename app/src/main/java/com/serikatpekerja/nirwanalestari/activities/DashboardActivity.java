@@ -1,13 +1,18 @@
 package com.serikatpekerja.nirwanalestari;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.serikatpekerja.nirwanalestari.activities.ComplaintActivity;
+import com.serikatpekerja.nirwanalestari.activities.EdukasiActivity;
+import com.serikatpekerja.nirwanalestari.activities.ChatbotActivity;
+import com.serikatpekerja.nirwanalestari.activities.WebViewActivity;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -32,13 +37,30 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void setupGridMenu() {
-        // Tombol 0: Pengaduan
+        // Button 0: Pengaduan
         LinearLayout pengaduanBtn = (LinearLayout) gridMenu.getChildAt(0);
         pengaduanBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, ComplaintActivity.class));
         });
 
-        // Tambahkan item lainnya jika sudah di-layout-kan
-        // Misal: edukasiBtn.setOnClickListener( ... );
+        // Button 1: Edukasi Pekerja
+        LinearLayout edukasiBtn = (LinearLayout) gridMenu.getChildAt(1);
+        edukasiBtn.setOnClickListener(v -> {
+            startActivity(new Intent(this, EdukasiActivity.class));
+        });
+
+        // Button 2: Chatbot
+        LinearLayout chatbotBtn = (LinearLayout) gridMenu.getChildAt(2);
+        chatbotBtn.setOnClickListener(v -> {
+            startActivity(new Intent(this, ChatbotActivity.class));
+        });
+
+        // Button 3: Info Ketenagakerjaan (WebView)
+        LinearLayout infoBtn = (LinearLayout) gridMenu.getChildAt(3);
+        infoBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, WebViewActivity.class);
+            intent.putExtra("url", "https://kemnaker.go.id/");
+            startActivity(intent);
+        });
     }
 }
