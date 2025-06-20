@@ -6,20 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.serikatpekerja.nirwanalestari.R;
-import com.serikatpekerja.nirwanalestari.MainActivity;
 import com.serikatpekerja.nirwanalestari.database.DatabaseHelper;
+import com.serikatpekerja.nirwanalestari.DashboardActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
     EditText edtNIK, edtPassword;
-    Button btnLogin;
-    TextView txtDaftar;
+    Button btnLogin, btnDaftar;
     DatabaseHelper dbHelper;
 
     @Override
@@ -30,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         edtNIK = findViewById(R.id.edtNIK);
         edtPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
-        txtDaftar = findViewById(R.id.txtDaftar);
+        btnDaftar = findViewById(R.id.btnDaftar);
 
         dbHelper = new DatabaseHelper(this);
 
@@ -40,8 +38,9 @@ public class LoginActivity extends AppCompatActivity {
 
             if (dbHelper.checkUser(nik, password)) {
                 Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("user_nik", nik);
+
+                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                intent.putExtra("user_name", nik);
                 startActivity(intent);
                 finish();
             } else {
@@ -49,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        txtDaftar.setOnClickListener(v -> {
+        btnDaftar.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
             startActivity(intent);
         });
@@ -58,16 +57,12 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-            .setTitle("Konfirmasi Keluar")
-            .setMessage("Apakah kamu yakin ingin keluar dari aplikasi?")
-            .setPositiveButton("Ya, saya yakin", (dialog, which) -> {
-                // Arahkan kembali ke splash screen
-                Intent intent = new Intent(LoginActivity.this, SplashActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
-            })
-            .setNegativeButton("Tidak", null)
-            .show();
+                .setTitle("Konfirmasi Keluar")
+                .setMessage("Apa kamu yakin untuk keluar dari aplikasi?")
+                .setPositiveButton("Ya, saya yakin", (dialog, which) -> {
+                    finishAffinity();
+                })
+                .setNegativeButton("Tidak", null)
+                .show();
     }
 }
