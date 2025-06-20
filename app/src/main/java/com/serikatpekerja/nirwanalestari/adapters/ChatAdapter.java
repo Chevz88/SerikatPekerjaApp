@@ -4,13 +4,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.serikatpekerja.nirwanalestari.R;
 import com.serikatpekerja.nirwanalestari.models.ChatMessage;
+
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
+
     private final List<ChatMessage> messageList;
 
     public ChatAdapter(List<ChatMessage> messageList) {
@@ -26,8 +30,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
-        ChatMessage msg = messageList.get(position);
-        holder.textMessage.setText(msg.getText());
+        ChatMessage message = messageList.get(position);
+        holder.textMessage.setText(message.getText());
     }
 
     @Override
