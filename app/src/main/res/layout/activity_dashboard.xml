@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dashboardLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    tools:context=".DashboardActivity">
+
+    <!-- Header Welcome -->
+    <TextView
+        android:id="@+id/txtWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selamat datang, CEPY HANAFI"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp" />
+
+    <!-- Grid Menu -->
+    <GridLayout
+        android:id="@+id/gridMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:layout_below="@id/txtWelcome"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp">
+
+        <!-- Tombol 1 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_complaint"
+                android:background="@drawable/rounded_button"
+                android:padding="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pengaduan"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- Tambahkan item lainnya di sini (Edukasi, Profil, Logout, dll) -->
+    </GridLayout>
+
+    <!-- Bottom Navigation (placeholder) -->
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="#F5F5F5"
+        android:weightSum="4">
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_home"
+            android:scaleType="centerInside"
+            android:padding="8dp" />
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_book"
+            android:scaleType="centerInside"
+            android:padding="8dp" />
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_bell"
+            android:scaleType="centerInside"
+            android:padding="8dp" />
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_user"
+            android:scaleType="centerInside"
+            android:padding="8dp" />
+    </LinearLayout>
+
+</RelativeLayout>
