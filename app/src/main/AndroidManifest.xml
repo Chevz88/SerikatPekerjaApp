@@ -37,6 +37,7 @@
         <!-- Pengaduan dan preview -->
         <activity android:name=".activities.ComplaintActivity" android:exported="true"/>
         <activity android:name=".activities.PreviewActivity" android:exported="true"/>
+        <activity android:name=".activities.HistoryActivity"/>
 
         <!-- Dashboard utama -->
         <activity android:name=".DashboardActivity" android:exported="true"/>
