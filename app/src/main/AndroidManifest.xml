@@ -38,6 +38,7 @@
         <activity android:name=".activities.ComplaintActivity" android:exported="true"/>
         <activity android:name=".activities.PreviewActivity" android:exported="true"/>
         <activity android:name=".activities.HistoryActivity"/>
+        <activity android:name=".activities.ProfilPekerjaActivity" />
 
         <!-- Dashboard utama -->
         <activity android:name=".DashboardActivity" android:exported="true"/>
