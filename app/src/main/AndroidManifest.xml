@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.serikatpekerja.nirwanalestari">
 
+    <!-- Izin akses internet untuk WebView, Chatbot, dsb -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
@@ -10,25 +11,46 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name">
 
-        <activity android:name=".activities.SplashActivity"
-                  android:exported="true"
-                  android:theme="@style/Theme.AppCompat.NoActionBar">
+        <!-- Splash screen (launcher) -->
+        <activity
+            android:name=".activities.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"/>
-        
-        <activity android:name=".activities.LoginActivity"/>
-        <activity android:name=".activities.RegistrationActivity"/>
-        <activity android:name=".activities.ComplaintActivity"/>
-        <activity android:name=".activities.PreviewActivity"/>
+        <!-- Halaman utama -->
+        <activity android:name=".MainActivity" android:exported="true"/>
 
-        <activity android:name=".activities.DashboardActivity"/>
-        <activity android:name=".activities.LogoutActivity"
-                  android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <!-- Autentikasi -->
+        <activity android:name=".activities.LoginActivity" android:exported="true"/>
+        <activity android:name=".activities.RegistrationActivity" android:exported="true"/>
+
+        <!-- Pengaduan dan preview -->
+        <activity android:name=".activities.ComplaintActivity" android:exported="true"/>
+        <activity android:name=".activities.PreviewActivity" android:exported="true"/>
+
+        <!-- Dashboard utama -->
+        <activity android:name=".DashboardActivity" android:exported="true"/>
+
+        <!-- Halaman logout (jika ada) -->
+        <activity
+            android:name=".activities.LogoutActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+
+        <!-- Edukasi -->
+        <activity android:name=".activities.EdukasiActivity" android:exported="true"/>
+        <activity android:name=".activities.EdukasiDetailActivity" android:exported="true"/>
+
+        <!-- Chatbot edukasi -->
+        <activity android:name=".activities.ChatbotActivity" android:exported="true"/>
+
+        <!-- WebView untuk situs Kemnaker/Google -->
+        <activity android:name=".activities.WebViewActivity" android:exported="true"/>
 
     </application>
 
