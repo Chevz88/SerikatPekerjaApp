@@ -1,127 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
-    android:padding="16dp">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/background_gradient">
 
+    <!-- Welcome Text -->
     <TextView
         android:id="@+id/txtWelcome"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Selamat Datang"
-        android:textColor="@android:color/white"
+        android:text="Selamat datang"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginBottom="16dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:gravity="center"
+        android:layout_marginBottom="24dp"
+        android:textColor="@android:color/black" />
 
-    <!-- Grid menu -->
+    <!-- Grid Menu -->
     <GridLayout
         android:id="@+id/gridMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtWelcome"
-        android:layout_marginTop="24dp"
         android:columnCount="2"
-        android:alignmentMode="alignMargins"
-        android:rowCount="2"
+        android:rowCount="3"
+        android:layout_gravity="center"
         android:useDefaultMargins="true">
 
         <!-- Button 1: Pengaduan -->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:layout_columnWeight="1"
-            android:orientation="vertical"
+            android:layout_margin="8dp"
+            android:background="@drawable/menu_button_background"
             android:gravity="center"
-            android:padding="16dp"
-            android:background="@drawable/rounded_button">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_complaint" />
+                android:src="@drawable/ic_complaint"
+                android:layout_marginBottom="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pengaduan"
-                android:textColor="#FFF"
-                android:layout_marginTop="8dp"/>
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
-        <!-- Button 2: Edukasi -->
+        <!-- Button 2: Edukasi Pekerja -->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:layout_columnWeight="1"
-            android:orientation="vertical"
+            android:layout_margin="8dp"
+            android:background="@drawable/menu_button_background"
             android:gravity="center"
-            android:padding="16dp"
-            android:background="@drawable/rounded_button">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_book" />
+                android:src="@drawable/ic_education"
+                android:layout_marginBottom="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edukasi"
-                android:textColor="#FFF"
-                android:layout_marginTop="8dp"/>
+                android:text="Edukasi Pekerja"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
         <!-- Button 3: Chatbot -->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:layout_columnWeight="1"
-            android:orientation="vertical"
+            android:layout_margin="8dp"
+            android:background="@drawable/menu_button_background"
             android:gravity="center"
-            android:padding="16dp"
-            android:background="@drawable/rounded_button">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_bell" />
+                android:src="@drawable/ic_chatbot"
+                android:layout_marginBottom="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Chatbot"
-                android:textColor="#FFF"
-                android:layout_marginTop="8dp"/>
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
-        <!-- Button 4: Info -->
+        <!-- Button 4: Info Ketenagakerjaan -->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:layout_columnWeight="1"
-            android:orientation="vertical"
+            android:layout_margin="8dp"
+            android:background="@drawable/menu_button_background"
             android:gravity="center"
-            android:padding="16dp"
-            android:background="@drawable/rounded_button">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_info_outline" />
+                android:src="@drawable/ic_info"
+                android:layout_marginBottom="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Info"
-                android:textColor="#FFF"
-                android:layout_marginTop="8dp"/>
+                android:text="Info Ketenagakerjaan"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <!-- Button 5: Riwayat Pengaduan -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            android:background="@drawable/menu_button_background"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_history"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Riwayat Pengaduan"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
     </GridLayout>
 
-</RelativeLayout>
+</LinearLayout>
