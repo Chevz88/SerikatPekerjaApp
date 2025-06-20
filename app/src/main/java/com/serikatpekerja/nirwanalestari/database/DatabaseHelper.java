@@ -34,7 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // Insert user baru
+    // Tambahkan user baru
     public long insertUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -46,7 +46,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.insert("users", null, cv);
     }
 
-    // Cek login
+    // Login: Cek apakah user ada berdasarkan nik dan password
     public boolean checkUser(String nik, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM users WHERE nik = ? AND password = ?", new String[]{nik, password});
@@ -59,17 +59,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public String getUserName(String nik) {
         SQLiteDatabase db = this.getReadableDatabase();
         String name = "";
-
         Cursor cursor = db.rawQuery("SELECT nama FROM users WHERE nik = ?", new String[]{nik});
         if (cursor.moveToFirst()) {
             name = cursor.getString(0);
         }
-
         cursor.close();
         return name;
     }
 
-    // Insert laporan pengaduan
+    // Ambil user lengkap berdasarkan NIK
+    public User getUserByNIK(String nik) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE nik = ?", new String[]{nik});
+
+        User user = null;
+        if (cursor.moveToFirst()) {
+            String nama = cursor.getString(cursor.getColumnIndex("nama"));
+            String ktp = cursor.getString(cursor.getColumnIndex("ktp"));
+            String departemen = cursor.getString(cursor.getColumnIndex("departemen"));
+            String password = cursor.getString(cursor.getColumnIndex("password"));
+            user = new User(nama, ktp, nik, departemen, password);
+        }
+
+        cursor.close();
+        return user;
+    }
+
+    // Simpan pengaduan
     public long insertLaporan(Laporan laporan) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -80,25 +96,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.insert("laporan", null, cv);
     }
 
-    // Ambil semua laporan untuk history
+    // Ambil semua laporan
     public List<Laporan> getAllLaporan() {
-        List<Laporan> listLaporan = new ArrayList<>();
+        List<Laporan> laporanList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM laporan ORDER BY id DESC", null);
 
         if (cursor.moveToFirst()) {
             do {
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
                 String nama = cursor.getString(cursor.getColumnIndex("nama"));
                 String nik = cursor.getString(cursor.getColumnIndex("nik"));
                 String departemen = cursor.getString(cursor.getColumnIndex("departemen"));
                 String isi = cursor.getString(cursor.getColumnIndex("isi"));
 
-                Laporan laporan = new Laporan(nama, nik, departemen, isi);
-                listLaporan.add(laporan);
+                Laporan laporan = new Laporan(id, nama, nik, departemen, isi);
+                laporanList.add(laporan);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
-        return listLaporan;
+        return laporanList;
     }
 }
