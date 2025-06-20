@@ -1,18 +1,4 @@
 <resources>
     <string name="app_name">SerikatPekerjaApp</string>
-    <string name="login">Login</string>
-    <string name="register">Daftar</string>
-    <string name="submit">Kirim</string>
-    <string name="welcome">Selamat Datang</string>
-
-    <string-array name="departemen_array">
-        <item>Produksi</item>
-        <item>Sales</item>
-        <item>QC</item>
-        <item>Logistik</item>
-        <item>Keuangan</item>
-        <item>HRD</item>
-        <item>IT</item>
-        <item>Lainnya</item>
-    </string-array>
+    <string name="splash_message">Bersama Kita Kuat. Bersatu Kita Bangkit.</string>
 </resources>
