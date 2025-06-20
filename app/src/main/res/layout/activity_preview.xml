@@ -1,9 +1,10 @@
+<!-- File: res/layout/activity_preview.xml -->
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
-    android:background="@color/white">
+    android:background="@drawable/bg_gradient">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,48 +14,56 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Preview Aduan"
-            android:textSize="24sp"
+            android:text="Pratinjau Laporan Anda"
+            android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="@android:color/black"
             android:layout_marginBottom="24dp" />
 
         <TextView
+            android:id="@+id/txtNama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Nama:"
-            android:textStyle="bold"/>
-        <TextView
-            android:id="@+id/tvNama"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="-" />
+            android:layout_marginBottom="12dp" />
 
         <TextView
+            android:id="@+id/txtNIK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="NIK:"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
-        <TextView
-            android:id="@+id/tvNIK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="-" />
+            android:layout_marginBottom="12dp" />
 
         <TextView
+            android:id="@+id/txtDepartemen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Departemen:"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
-        <TextView
-            android:id="@+id/tvDepartemen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="-" />
+            android:layout_marginBottom="12dp" />
 
         <TextView
-            android:text="Isi Aduan:"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
-        <TextView
-            android:id="@+id/tvIsiAduan"
+            android:id="@+id/txtIsiAduan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="-" />
+            android:text="Isi Aduan:"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnKonfirmasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kirim Laporan"
+            android:backgroundTint="@color/merah"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="24dp" />
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kembali Edit"
+            android:backgroundTint="@color/abu"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="12dp" />
     </LinearLayout>
 </ScrollView>
