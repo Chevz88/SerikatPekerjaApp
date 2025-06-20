@@ -43,11 +43,10 @@ public class ChatbotActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String msg = edtMessage.getText().toString().trim();
                 if (!msg.isEmpty()) {
-                    messageList.add(new ChatMessage(msg, true)); // user message
+                    messageList.add(new ChatMessage(msg, true));
                     chatAdapter.notifyItemInserted(messageList.size() - 1);
                     edtMessage.setText("");
 
-                    // Simulasi jawaban bot
                     String reply = "Terima kasih. Pertanyaan Anda akan segera diproses.";
                     messageList.add(new ChatMessage(reply, false));
                     chatAdapter.notifyItemInserted(messageList.size() - 1);
