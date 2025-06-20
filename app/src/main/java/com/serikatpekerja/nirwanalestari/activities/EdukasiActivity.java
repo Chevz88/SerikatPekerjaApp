@@ -20,3 +20,20 @@ public class EdukasiActivity extends AppCompatActivity {
         });
     }
 }
+
+// =======================
+// EdukasiDetailActivity.java
+// =======================
+package com.serikatpekerja.nirwanalestari.activities;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import com.serikatpekerja.nirwanalestari.R;
+
+public class EdukasiDetailActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_edukasi_detail);
+    }
+}
