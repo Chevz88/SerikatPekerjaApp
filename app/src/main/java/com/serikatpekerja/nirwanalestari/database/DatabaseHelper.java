@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.serikatpekerja.nirwanalestari.models.Laporan;
 import com.serikatpekerja.nirwanalestari.models.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "serikatpekerja.db";
@@ -66,25 +69,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return name;
     }
 
-    // Ambil semua data user (untuk Profil)
-    public User getUserByNIK(String nik) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE nik = ?", new String[]{nik});
-
-        if (cursor.moveToFirst()) {
-            String nama = cursor.getString(cursor.getColumnIndexOrThrow("nama"));
-            String ktp = cursor.getString(cursor.getColumnIndexOrThrow("ktp"));
-            String departemen = cursor.getString(cursor.getColumnIndexOrThrow("departemen"));
-            String password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
-
-            cursor.close();
-            return new User(nama, ktp, nik, departemen, password);
-        }
-
-        cursor.close();
-        return null;
-    }
-
     // Insert laporan pengaduan
     public long insertLaporan(Laporan laporan) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -94,5 +78,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put("departemen", laporan.getDepartemen());
         cv.put("isi", laporan.getIsi());
         return db.insert("laporan", null, cv);
+    }
+
+    // Ambil semua laporan untuk history
+    public List<Laporan> getAllLaporan() {
+        List<Laporan> listLaporan = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM laporan ORDER BY id DESC", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String nama = cursor.getString(cursor.getColumnIndex("nama"));
+                String nik = cursor.getString(cursor.getColumnIndex("nik"));
+                String departemen = cursor.getString(cursor.getColumnIndex("departemen"));
+                String isi = cursor.getString(cursor.getColumnIndex("isi"));
+
+                Laporan laporan = new Laporan(nama, nik, departemen, isi);
+                listLaporan.add(laporan);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return listLaporan;
     }
 }
