@@ -1,168 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@drawable/background_gradient">
+package com.serikatpekerja.nirwanalestari;
 
-    <!-- Welcome Text -->
-    <TextView
-        android:id="@+id/txtWelcome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Selamat datang"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="24dp"
-        android:textColor="@android:color/black" />
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-    <!-- Grid Menu -->
-    <GridLayout
-        android:id="@+id/gridMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:rowCount="3"
-        android:layout_gravity="center"
-        android:useDefaultMargins="true">
+import androidx.appcompat.app.AppCompatActivity;
 
-        <!-- Button 1: Pengaduan -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:background="@drawable/menu_button_background"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true">
+import com.serikatpekerja.nirwanalestari.activities.ChatbotActivity;
+import com.serikatpekerja.nirwanalestari.activities.ComplaintActivity;
+import com.serikatpekerja.nirwanalestari.activities.EdukasiActivity;
+import com.serikatpekerja.nirwanalestari.activities.HistoryActivity;
+import com.serikatpekerja.nirwanalestari.activities.WebViewActivity;
 
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_complaint"
-                android:layout_marginBottom="8dp" />
+public class DashboardActivity extends AppCompatActivity {
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pengaduan"
-                android:textSize="14sp"
-                android:gravity="center"
-                android:textColor="@android:color/black" />
-        </LinearLayout>
+    TextView txtWelcome;
+    GridLayout gridMenu;
 
-        <!-- Button 2: Edukasi Pekerja -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:background="@drawable/menu_button_background"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true">
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_dashboard);
 
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_education"
-                android:layout_marginBottom="8dp" />
+        txtWelcome = findViewById(R.id.txtWelcome);
+        gridMenu = findViewById(R.id.gridMenu);
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edukasi Pekerja"
-                android:textSize="14sp"
-                android:gravity="center"
-                android:textColor="@android:color/black" />
-        </LinearLayout>
+        // Ambil nama user dari intent
+        String userName = getIntent().getStringExtra("user_name");
+        if (userName != null) {
+            txtWelcome.setText("Selamat datang, " + userName.toUpperCase());
+        }
 
-        <!-- Button 3: Chatbot -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:background="@drawable/menu_button_background"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true">
+        setupGridMenu();
+    }
 
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_chatbot"
-                android:layout_marginBottom="8dp" />
+    private void setupGridMenu() {
+        if (gridMenu.getChildCount() >= 5) {
+            // Button 0: Pengaduan
+            LinearLayout pengaduanBtn = (LinearLayout) gridMenu.getChildAt(0);
+            pengaduanBtn.setOnClickListener(v ->
+                startActivity(new Intent(this, ComplaintActivity.class))
+            );
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Chatbot"
-                android:textSize="14sp"
-                android:gravity="center"
-                android:textColor="@android:color/black" />
-        </LinearLayout>
+            // Button 1: Edukasi Pekerja
+            LinearLayout edukasiBtn = (LinearLayout) gridMenu.getChildAt(1);
+            edukasiBtn.setOnClickListener(v ->
+                startActivity(new Intent(this, EdukasiActivity.class))
+            );
 
-        <!-- Button 4: Info Ketenagakerjaan -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:background="@drawable/menu_button_background"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true">
+            // Button 2: Chatbot
+            LinearLayout chatbotBtn = (LinearLayout) gridMenu.getChildAt(2);
+            chatbotBtn.setOnClickListener(v ->
+                startActivity(new Intent(this, ChatbotActivity.class))
+            );
 
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_info"
-                android:layout_marginBottom="8dp" />
+            // Button 3: Info Ketenagakerjaan (WebView Kemnaker)
+            LinearLayout infoBtn = (LinearLayout) gridMenu.getChildAt(3);
+            infoBtn.setOnClickListener(v -> {
+                Intent intent = new Intent(this, WebViewActivity.class);
+                intent.putExtra("url", "https://kemnaker.go.id/");
+                startActivity(intent);
+            });
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Info Ketenagakerjaan"
-                android:textSize="12sp"
-                android:gravity="center"
-                android:textColor="@android:color/black" />
-        </LinearLayout>
-
-        <!-- Button 5: Riwayat Pengaduan -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:background="@drawable/menu_button_background"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_history"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Riwayat Pengaduan"
-                android:textSize="12sp"
-                android:gravity="center"
-                android:textColor="@android:color/black" />
-        </LinearLayout>
-
-    </GridLayout>
-
-</LinearLayout>
+            // Button 4: Riwayat Pengaduan
+            LinearLayout historyBtn = (LinearLayout) gridMenu.getChildAt(4);
+            historyBtn.setOnClickListener(v ->
+                startActivity(new Intent(this, HistoryActivity.class))
+            );
+        }
+    }
+}
