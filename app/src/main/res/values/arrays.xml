@@ -1,0 +1,12 @@
+<resources>
+    <string-array name="departemen_array">
+        <item>Produksi</item>
+        <item>Sales</item>
+        <item>QC</item>
+        <item>Logistik</item>
+        <item>Keuangan</item>
+        <item>HRD</item>
+        <item>IT</item>
+        <item>Lainnya</item>
+    </string-array>
+</resources>
