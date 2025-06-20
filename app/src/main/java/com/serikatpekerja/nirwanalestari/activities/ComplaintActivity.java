@@ -1,8 +1,10 @@
 package com.serikatpekerja.nirwanalestari.activities;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +15,9 @@ import com.serikatpekerja.nirwanalestari.models.Laporan;
 
 public class ComplaintActivity extends AppCompatActivity {
 
-    EditText edtNama, edtNIK, edtDepartemen, edtIsiAduan;
-    Button btnKirim, btnKembali;
+    EditText edtNama, edtNIK, edtIsi;
+    Spinner spinnerDepartemen;
+    Button btnKirim, btnBack;
     DatabaseHelper dbHelper;
 
     @Override
@@ -22,37 +25,43 @@ public class ComplaintActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaint);
 
+        // Binding view
         edtNama = findViewById(R.id.edtNama);
         edtNIK = findViewById(R.id.edtNIK);
-        edtDepartemen = findViewById(R.id.edtDepartemen);
-        edtIsiAduan = findViewById(R.id.edtIsiAduan);
+        edtIsi = findViewById(R.id.edtIsi);
+        spinnerDepartemen = findViewById(R.id.spinnerDepartemen);
         btnKirim = findViewById(R.id.btnKirim);
-        btnKembali = findViewById(R.id.btnKembali);
+        btnBack = findViewById(R.id.btnBack);
 
         dbHelper = new DatabaseHelper(this);
 
+        // Setup spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+            this, R.array.departemen_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDepartemen.setAdapter(adapter);
+
+        // Tombol kirim
         btnKirim.setOnClickListener(v -> {
             String nama = edtNama.getText().toString().trim();
             String nik = edtNIK.getText().toString().trim();
-            String departemen = edtDepartemen.getText().toString().trim();
-            String isi = edtIsiAduan.getText().toString().trim();
+            String isi = edtIsi.getText().toString().trim();
+            String departemen = spinnerDepartemen.getSelectedItem().toString();
 
-            if (nama.isEmpty() || nik.isEmpty() || departemen.isEmpty() || isi.isEmpty()) {
-                Toast.makeText(this, "Semua kolom wajib diisi", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            Laporan laporan = new Laporan(nama, nik, departemen, isi);
-            long result = dbHelper.insertLaporan(laporan);
-
-            if (result > 0) {
-                Toast.makeText(this, "Aduan berhasil disimpan (offline)", Toast.LENGTH_SHORT).show();
-                finish();
+            if (nama.isEmpty() || nik.isEmpty() || isi.isEmpty()) {
+                Toast.makeText(this, "Semua kolom harus diisi", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Gagal menyimpan aduan", Toast.LENGTH_SHORT).show();
+                Laporan laporan = new Laporan(nama, nik, departemen, isi);
+                long result = dbHelper.insertLaporan(laporan);
+                if (result > 0) {
+                    Toast.makeText(this, "Pengaduan berhasil dikirim", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(this, "Gagal mengirim pengaduan", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
-        btnKembali.setOnClickListener(v -> finish());
+        btnBack.setOnClickListener(v -> finish());
     }
 }
