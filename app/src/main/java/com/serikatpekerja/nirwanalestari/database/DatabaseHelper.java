@@ -66,6 +66,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return name;
     }
 
+    // Ambil semua data user (untuk Profil)
+    public User getUserByNIK(String nik) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE nik = ?", new String[]{nik});
+
+        if (cursor.moveToFirst()) {
+            String nama = cursor.getString(cursor.getColumnIndexOrThrow("nama"));
+            String ktp = cursor.getString(cursor.getColumnIndexOrThrow("ktp"));
+            String departemen = cursor.getString(cursor.getColumnIndexOrThrow("departemen"));
+            String password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
+
+            cursor.close();
+            return new User(nama, ktp, nik, departemen, password);
+        }
+
+        cursor.close();
+        return null;
+    }
+
     // Insert laporan pengaduan
     public long insertLaporan(Laporan laporan) {
         SQLiteDatabase db = this.getWritableDatabase();
